@@ -47,9 +47,14 @@ export const Button = styled.button`
   height: 100px;
   cursor: pointer;
   width: 100%;
+  border: none;
+  :hover {
+    background-color: #fff;
+    transition: 0.5s ease-in-out;
+    color: #000;
+  }
 `;
 export const ButtonText = styled.p`
-  color: #ffffff;
   font-size: 28px;
   font-weight: 700;
 `;
