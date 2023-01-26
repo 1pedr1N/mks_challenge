@@ -24,14 +24,20 @@ export const MenuHeader = styled.div`
 export const MenuCloseImage = styled.div`
   margin: 30px 50px;
   cursor: pointer;
+  :hover {
+    transform: scale(1.1);
+    transition: 0.2s;
+  }
 `;
-export const MenuContent = styled.div``;
-export const MenuFooter = styled.div`
+export const MenuContent = styled.div`
   display: flex;
-  justify-content: flex-end;
-  height: 100%;
   flex-direction: column;
+  max-height: 100%;
+  overflow-y: auto;
+
+  align-items: center;
 `;
+
 export const Value = styled.div`
   display: flex;
   justify-content: space-between;

@@ -1,6 +1,7 @@
 import * as S from "../styles/components/menu";
 import Image from "next/image";
 import Close from "../assets/close.svg";
+import CartBox from "./cartBox";
 const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
   return (
     <div
@@ -19,16 +20,21 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
             <Image src={Close} alt="Close Icon" width={40} height={40} />
           </S.MenuCloseImage>
         </S.MenuHeader>
-        <S.MenuContent />
-        <S.MenuFooter>
-          <S.Value>
-            <S.ValueText>Total:</S.ValueText>
-            <S.ValueText>R$ 0,00</S.ValueText>
-          </S.Value>
-          <S.Button>
-            <S.ButtonText>Finalizar compra</S.ButtonText>
-          </S.Button>
-        </S.MenuFooter>
+        <S.MenuContent>
+          <CartBox />
+          <CartBox />
+          <CartBox />
+          <CartBox />
+          <CartBox />
+        </S.MenuContent>
+
+        <S.Value>
+          <S.ValueText>Total:</S.ValueText>
+          <S.ValueText>R$ 0,00</S.ValueText>
+        </S.Value>
+        <S.Button>
+          <S.ButtonText>Finalizar compra</S.ButtonText>
+        </S.Button>
       </S.Menu>
     </div>
   );
