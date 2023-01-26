@@ -6,10 +6,14 @@ export const Container = styled.div`
   align-items: center;
   width: 250px;
   height: 295px;
-  margin-top: 80px;
+
   background-color: #ffff;
   border-radius: 12px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  :hover {
+    transform: scale(1.1);
+    transition: 0.2s;
+  }
 `;
 export const Button = styled.div`
   width: 100%;
