@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   width: 250px;
-  height: 295px;
+  height: 100%;
 
   background-color: #ffff;
   border-radius: 12px;
@@ -49,7 +49,7 @@ export const PriceBox = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #373737;
-  width: 64px;
+  width: 100px;
   height: 30px;
   border-radius: 7px;
   font-weight: 700;
@@ -58,4 +58,5 @@ export const PriceBox = styled.div`
 export const description = styled.p`
   font-size: 12px;
   font-weight: 300;
+  margin-left: 5px;
 `;

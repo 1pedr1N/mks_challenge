@@ -4,17 +4,19 @@ import Product from "../assets/product.svg";
 import Bag from "../assets/bag.svg";
 
 interface BoxProductProps {
-  image: string;
-  title: string;
-  price: string;
+  id: number;
+  name: string;
+  brand: string;
   description: string;
+  price: string;
+  img: string;
 }
 
-const BoxProduct = () => {
+const BoxProduct = ({ ...props }: BoxProductProps) => {
   return (
     <S.Container>
-      <Image
-        src={Product}
+      <img
+        src={props.img}
         alt="Product"
         width={160}
         height={160}
@@ -22,19 +24,12 @@ const BoxProduct = () => {
       />
 
       <S.TextContainer>
-        <S.ProductTitle>Apple Watch Series 4 GPS</S.ProductTitle>
-        <S.PriceBox>R$100 </S.PriceBox>
+        <S.ProductTitle>{props.name} </S.ProductTitle>
+        <S.PriceBox>R${props.price} </S.PriceBox>
       </S.TextContainer>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "flex-end",
-          width: "100%",
-          marginLeft: 23,
-        }}
-      >
-        <S.description>Descrição Produto </S.description>
-      </div>
+
+      <S.description>{props.description} </S.description>
+
       <S.Button>
         <Image src={Bag} alt="Bag" width={20} height={20} />
         <S.ButtonText>COMPRAR</S.ButtonText>
