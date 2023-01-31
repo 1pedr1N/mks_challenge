@@ -5,20 +5,12 @@ import Footer from "@/components/footer";
 import BoxProduct from "@/components/boxProduct";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { IProductProps } from "@/interfaces/interface.product";
 const inter = Inter({ subsets: ["latin"] });
-interface IProductProps {
-  brand: string;
-  createdAt: string;
-  description: string;
-  id: number;
-  name: string;
-  photo: string;
-  price: string;
-  updatedAt: string;
-}
 
 export default function Home() {
   const [products, setProducts] = useState<IProductProps[]>([]);
+
   useEffect(() => {
     axios
       .get(

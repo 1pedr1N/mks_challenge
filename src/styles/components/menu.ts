@@ -15,6 +15,14 @@ export const MenuTitle = styled.h1`
   font-weight: 700;
   margin: 30px 50px;
 `;
+export const EmptyText = styled.h1`
+  color: #fff;
+  font-size: 30px;
+  font-weight: 700;
+  margin: 30px 50px;
+  text-align: center;
+  margin-top: 100px;
+`;
 export const MenuHeader = styled.div`
   display: flex;
   width: 100%;
@@ -63,4 +71,9 @@ export const Button = styled.button`
 export const ButtonText = styled.p`
   font-size: 28px;
   font-weight: 700;
+`;
+export const MenuFooter = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 `;

@@ -1,15 +1,11 @@
 import * as S from "../styles/components/cartBox";
-import Image from "next/image";
-import Product from "../assets/product.svg";
-interface CartBoxProps {
-  id: number;
-  name: string;
-  brand: string;
-  description: string;
-  price: string;
-  img: string;
-}
+import { useContext } from "react";
+import { CartContext } from "../context/cartContext";
+import { CartBoxProps } from "@/interfaces/interface.cardBoxProps";
+
 const CartBox = ({ ...props }: CartBoxProps) => {
+  const number = 1;
+  const { cart, addProduct } = useContext(CartContext);
   return (
     <>
       <S.PositionClose>
@@ -24,9 +20,11 @@ const CartBox = ({ ...props }: CartBoxProps) => {
             <S.CounterButton>
               <S.ButtonText>-</S.ButtonText>
             </S.CounterButton>
-            <S.CounterText>1</S.CounterText>
+            <S.CounterText> {number} </S.CounterText>
             <S.CounterButton>
-              <S.ButtonText>+</S.ButtonText>
+              <S.ButtonText onClick={() => console.log("legal")}>
+                +
+              </S.ButtonText>
             </S.CounterButton>
           </S.Counter>
         </S.CounterDiv>

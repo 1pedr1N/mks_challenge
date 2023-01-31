@@ -2,20 +2,22 @@ import * as S from "../styles/components/menu";
 import Image from "next/image";
 import Close from "../assets/close.svg";
 import CartBox from "./cartBox";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-interface IProductProps {
-  brand: string;
-  createdAt: string;
-  description: string;
-  id: number;
-  name: string;
-  photo: string;
-  price: string;
-  updatedAt: string;
-}
+import { IProductProps } from "@/interfaces/interface.product";
+import { useContext } from "react";
+import lottie from "lottie-web";
+import Lottie from "react-lottie";
+import { CartContext } from "@/context/cartContext";
+import Animation from "../assets/animation.json";
 const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
   const [products, setProducts] = useState<IProductProps[]>([]);
+  const { cart } = useContext(CartContext);
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: Animation,
+  };
   useEffect(() => {
     axios
       .get(
@@ -29,6 +31,7 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
         console.log(error);
       });
   }, []);
+
   return (
     <div
       style={{
@@ -47,7 +50,18 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
           </S.MenuCloseImage>
         </S.MenuHeader>
         <S.MenuContent>
-          {products.map((product, idx) => (
+          {cart.map((product: IProductProps) => (
+            <CartBox
+              key={product.id}
+              id={product.id}
+              brand={product.brand}
+              description={product.description}
+              name={product.name}
+              img={product.photo}
+              price={product.price}
+            />
+          ))}
+          {/* {products.map((product, idx) => (
             <CartBox
               key={idx}
               id={product.id}
@@ -57,16 +71,37 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
               img={product.photo}
               price={product.price}
             />
-          ))}
+          ))} */}
         </S.MenuContent>
-
-        <S.Value>
-          <S.ValueText>Total:</S.ValueText>
-          <S.ValueText>R$ 0,00</S.ValueText>
-        </S.Value>
-        <S.Button>
-          <S.ButtonText>Finalizar compra</S.ButtonText>
-        </S.Button>
+        {cart.length > 0 ? (
+          <>
+            {cart.map((product: IProductProps) => (
+              <CartBox
+                key={product.id}
+                id={product.id}
+                brand={product.brand}
+                description={product.description}
+                name={product.name}
+                img={product.photo}
+                price={product.price}
+              />
+            ))}
+            <S.MenuFooter>
+              <S.Value>
+                <S.ValueText>Total:</S.ValueText>
+                <S.ValueText>R$ 0,00</S.ValueText>
+              </S.Value>
+              <S.Button>
+                <S.ButtonText>Finalizar compra</S.ButtonText>
+              </S.Button>
+            </S.MenuFooter>
+          </>
+        ) : (
+          <>
+            <S.EmptyText>Seu carrinho de compras está vazio!</S.EmptyText>
+            <Lottie options={defaultOptions} height={500} width={500} />
+          </>
+        )}
       </S.Menu>
     </div>
   );
