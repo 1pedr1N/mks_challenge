@@ -48,7 +48,11 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
     );
   }
   function totalValue() {
-    setTotal(cart.reduce((acc, product) => acc + product.price, 0));
+    let total = 0;
+    cart.map((product: IProductProps) => {
+      total += product.price * count;
+    });
+    setTotal(total);
   }
   useEffect(() => {
     totalValue();
