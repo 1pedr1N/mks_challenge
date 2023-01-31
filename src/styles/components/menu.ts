@@ -6,7 +6,7 @@ export const Menu = styled.div`
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   z-index: 1;
 `;
 export const MenuTitle = styled.h1`
@@ -34,7 +34,6 @@ export const MenuContent = styled.div`
   flex-direction: column;
   max-height: 100%;
   overflow-y: auto;
-
   align-items: center;
 `;
 
