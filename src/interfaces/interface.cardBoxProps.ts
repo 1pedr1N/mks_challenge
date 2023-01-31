@@ -3,6 +3,10 @@ export interface CartBoxProps {
   name: string;
   brand: string;
   description: string;
-  price: string;
+  price: number;
   img: string;
+  click: () => void;
+  add: () => void;
+  remove: () => void;
+  numberProducts: number;
 }

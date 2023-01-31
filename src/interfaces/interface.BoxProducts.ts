@@ -3,6 +3,7 @@ export interface BoxProductProps {
   name: string;
   brand: string;
   description: string;
-  price: string;
+  price: number;
   img: string;
+  click: () => void;
 }

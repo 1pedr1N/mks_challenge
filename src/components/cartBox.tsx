@@ -1,14 +1,15 @@
 import * as S from "../styles/components/cartBox";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../context/cartContext";
 import { CartBoxProps } from "@/interfaces/interface.cardBoxProps";
 
 const CartBox = ({ ...props }: CartBoxProps) => {
   const number = 1;
-  const { cart, addProduct, removeProduct } = useContext(CartContext);
+  const { removeProduct } = useContext(CartContext);
+
   return (
     <>
-      <S.PositionClose onClick={removeProduct}>
+      <S.PositionClose onClick={props.click}>
         <S.Close>X</S.Close>
       </S.PositionClose>
 
@@ -18,13 +19,11 @@ const CartBox = ({ ...props }: CartBoxProps) => {
         <S.CounterDiv>
           <S.Counter>
             <S.CounterButton>
-              <S.ButtonText>-</S.ButtonText>
+              <S.ButtonText onClick={props.remove}>-</S.ButtonText>
             </S.CounterButton>
-            <S.CounterText> {number} </S.CounterText>
+            <S.CounterText> {props.numberProducts} </S.CounterText>
             <S.CounterButton>
-              <S.ButtonText onClick={() => console.log("legal")}>
-                +
-              </S.ButtonText>
+              <S.ButtonText onClick={props.add}>+</S.ButtonText>
             </S.CounterButton>
           </S.Counter>
         </S.CounterDiv>

@@ -11,15 +11,24 @@ interface ICartProps {
   removeProduct: (product: IProductProps) => void;
 }
 export const CartProvider = ({ children }: CartContextType) => {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState<IProductProps[]>([]);
   function addProduct(product: IProductProps) {
-    //teste
-    setCart([...cart, product] as never[]);
-    console.log("pega");
+    if (cart.find((item) => item.id === product.id)) {
+      const filteredCard = cart.filter((item) => item.id !== product.id);
+      setCart([...filteredCard, product] as IProductProps[]);
+      return;
+    } else {
+      setCart([...cart, product] as IProductProps[]);
+    }
   }
   function removeProduct(product: IProductProps) {
+    const filteredCard = cart.filter((item) => item.id !== product.id);
+    setCart(filteredCard);
+  }
+  function clearCart() {
     setCart([]);
   }
+
   return (
     <CartContext.Provider value={{ cart, addProduct, removeProduct }}>
       {children}

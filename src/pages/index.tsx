@@ -6,11 +6,13 @@ import BoxProduct from "@/components/boxProduct";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { IProductProps } from "@/interfaces/interface.product";
+import { CartContext } from "@/context/cartContext";
+import { useContext } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [products, setProducts] = useState<IProductProps[]>([]);
-
+  const { cart, addProduct } = useContext(CartContext);
   useEffect(() => {
     axios
       .get(
@@ -37,6 +39,7 @@ export default function Home() {
               description={product.description}
               name={product.name}
               img={product.photo}
+              click={() => addProduct(product)}
               price={product.price}
             />
           ))}

@@ -5,6 +5,7 @@ export interface IProductProps {
   id: number;
   name: string;
   photo: string;
-  price: string;
+  price: number;
   updatedAt: string;
+  numberProducts: number;
 }

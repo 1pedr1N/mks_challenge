@@ -10,9 +10,12 @@ import lottie from "lottie-web";
 import Lottie from "react-lottie";
 import { CartContext } from "@/context/cartContext";
 import Animation from "../assets/animation.json";
+import { Price } from "@/styles/components/cartBox";
 const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
   const [products, setProducts] = useState<IProductProps[]>([]);
-  const { cart } = useContext(CartContext);
+  const [count, setCount] = useState(1);
+  const [total, setTotal] = useState(0);
+  const { cart, removeProduct } = useContext(CartContext);
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -32,6 +35,24 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
       });
   }, []);
 
+  function countProducts() {
+    setCount(count + 1);
+  }
+  function removeProductCart() {
+    setCount(count - 1);
+  }
+  if (count < 1) {
+    setCount(1);
+    alert(
+      "Não é possível remover mais produtos, para remover o produto clique no botão X"
+    );
+  }
+  function totalValue() {
+    setTotal(cart.reduce((acc, product) => acc + product.price, 0));
+  }
+  useEffect(() => {
+    totalValue();
+  }, [cart]);
   return (
     <div
       style={{
@@ -50,33 +71,15 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
           </S.MenuCloseImage>
         </S.MenuHeader>
         <S.MenuContent>
-          {cart.map((product: IProductProps) => (
-            <CartBox
-              key={product.id}
-              id={product.id}
-              brand={product.brand}
-              description={product.description}
-              name={product.name}
-              img={product.photo}
-              price={product.price}
-            />
-          ))}
-          {/* {products.map((product, idx) => (
-            <CartBox
-              key={idx}
-              id={product.id}
-              brand={product.brand}
-              description={product.description}
-              name={product.name}
-              img={product.photo}
-              price={product.price}
-            />
-          ))} */}
           {cart.length > 0 ? (
             <>
-              {products.map((product, idx) => (
+              {cart.map((product: IProductProps) => (
                 <CartBox
-                  key={idx}
+                  numberProducts={count}
+                  add={() => countProducts()}
+                  remove={() => removeProductCart()}
+                  click={() => removeProduct(product)}
+                  key={product.id}
                   id={product.id}
                   brand={product.brand}
                   description={product.description}
@@ -85,21 +88,10 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
                   price={product.price}
                 />
               ))}
-              {/* {cart.map((product: IProductProps) => (
-              <CartBox
-                key={product.id}
-                id={product.id}
-                brand={product.brand}
-                description={product.description}
-                name={product.name}
-                img={product.photo}
-                price={product.price}
-              />
-            ))} */}
               <S.MenuFooter>
                 <S.Value>
                   <S.ValueText>Total:</S.ValueText>
-                  <S.ValueText>R$ 0,00</S.ValueText>
+                  <S.ValueText>R$ {total}</S.ValueText>
                 </S.Value>
                 <S.Button>
                   <S.ButtonText>Finalizar compra</S.ButtonText>

@@ -2,10 +2,9 @@ import * as S from "../styles/components/boxProduct";
 import Image from "next/image";
 import Bag from "../assets/bag.svg";
 import { BoxProductProps } from "@/interfaces/interface.BoxProducts";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CartContext } from "../context/cartContext";
 const BoxProduct = ({ ...props }: BoxProductProps) => {
-  const { cart, addProduct } = useContext(CartContext);
   return (
     <S.Container>
       <img
@@ -23,7 +22,7 @@ const BoxProduct = ({ ...props }: BoxProductProps) => {
 
       <S.description>{props.description} </S.description>
 
-      <S.Button onClick={addProduct}>
+      <S.Button onClick={props.click}>
         <Image src={Bag} alt="Bag" width={20} height={20} />
         <S.ButtonText>COMPRAR</S.ButtonText>
       </S.Button>
