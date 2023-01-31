@@ -1,6 +1,5 @@
 import * as S from "../styles/components/boxProduct";
 import Image from "next/image";
-import Product from "../assets/product.svg";
 import Bag from "../assets/bag.svg";
 import { BoxProductProps } from "@/interfaces/interface.BoxProducts";
 import { useContext } from "react";
@@ -24,7 +23,7 @@ const BoxProduct = ({ ...props }: BoxProductProps) => {
 
       <S.description>{props.description} </S.description>
 
-      <S.Button onClick={() => console.log("legal")}>
+      <S.Button onClick={addProduct}>
         <Image src={Bag} alt="Bag" width={20} height={20} />
         <S.ButtonText>COMPRAR</S.ButtonText>
       </S.Button>

@@ -72,10 +72,20 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
               price={product.price}
             />
           ))} */}
-        </S.MenuContent>
-        {cart.length > 0 ? (
-          <>
-            {cart.map((product: IProductProps) => (
+          {cart.length > 0 ? (
+            <>
+              {products.map((product, idx) => (
+                <CartBox
+                  key={idx}
+                  id={product.id}
+                  brand={product.brand}
+                  description={product.description}
+                  name={product.name}
+                  img={product.photo}
+                  price={product.price}
+                />
+              ))}
+              {/* {cart.map((product: IProductProps) => (
               <CartBox
                 key={product.id}
                 id={product.id}
@@ -85,23 +95,24 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
                 img={product.photo}
                 price={product.price}
               />
-            ))}
-            <S.MenuFooter>
-              <S.Value>
-                <S.ValueText>Total:</S.ValueText>
-                <S.ValueText>R$ 0,00</S.ValueText>
-              </S.Value>
-              <S.Button>
-                <S.ButtonText>Finalizar compra</S.ButtonText>
-              </S.Button>
-            </S.MenuFooter>
-          </>
-        ) : (
-          <>
-            <S.EmptyText>Seu carrinho de compras está vazio!</S.EmptyText>
-            <Lottie options={defaultOptions} height={500} width={500} />
-          </>
-        )}
+            ))} */}
+              <S.MenuFooter>
+                <S.Value>
+                  <S.ValueText>Total:</S.ValueText>
+                  <S.ValueText>R$ 0,00</S.ValueText>
+                </S.Value>
+                <S.Button>
+                  <S.ButtonText>Finalizar compra</S.ButtonText>
+                </S.Button>
+              </S.MenuFooter>
+            </>
+          ) : (
+            <>
+              <S.EmptyText>Seu carrinho de compras está vazio!</S.EmptyText>
+              <Lottie options={defaultOptions} height={500} width={500} />
+            </>
+          )}
+        </S.MenuContent>
       </S.Menu>
     </div>
   );

@@ -5,10 +5,10 @@ import { CartBoxProps } from "@/interfaces/interface.cardBoxProps";
 
 const CartBox = ({ ...props }: CartBoxProps) => {
   const number = 1;
-  const { cart, addProduct } = useContext(CartContext);
+  const { cart, addProduct, removeProduct } = useContext(CartContext);
   return (
     <>
-      <S.PositionClose>
+      <S.PositionClose onClick={removeProduct}>
         <S.Close>X</S.Close>
       </S.PositionClose>
 
