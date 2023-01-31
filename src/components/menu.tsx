@@ -2,7 +2,33 @@ import * as S from "../styles/components/menu";
 import Image from "next/image";
 import Close from "../assets/close.svg";
 import CartBox from "./cartBox";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+interface IProductProps {
+  brand: string;
+  createdAt: string;
+  description: string;
+  id: number;
+  name: string;
+  photo: string;
+  price: string;
+  updatedAt: string;
+}
 const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
+  const [products, setProducts] = useState<IProductProps[]>([]);
+  useEffect(() => {
+    axios
+      .get(
+        "https://mks-challenge-api-frontend.herokuapp.com/api/v1/products?page=1&rows=5&sortBy=id&orderBy=DESC"
+      )
+      .then((response) => {
+        setProducts(response.data.products);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   return (
     <div
       style={{
@@ -21,11 +47,17 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
           </S.MenuCloseImage>
         </S.MenuHeader>
         <S.MenuContent>
-          <CartBox />
-          <CartBox />
-          <CartBox />
-          <CartBox />
-          <CartBox />
+          {products.map((product, idx) => (
+            <CartBox
+              key={idx}
+              id={product.id}
+              brand={product.brand}
+              description={product.description}
+              name={product.name}
+              img={product.photo}
+              price={product.price}
+            />
+          ))}
         </S.MenuContent>
 
         <S.Value>

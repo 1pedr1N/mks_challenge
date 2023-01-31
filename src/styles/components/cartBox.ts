@@ -5,7 +5,7 @@ export const Container = styled.div`
   width: 380px;
   height: 100px;
   border-radius: 10px;
-  padding: 10px;
+  padding: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,8 +13,9 @@ export const Container = styled.div`
 export const Text = styled.p`
   font-weight: 400;
   font-size: 17px;
-  width: 30%;
+  width: 15%;
   color: #2c2c2c;
+  margin-left: 5px;
 `;
 export const Counter = styled.div`
   display: flex;
@@ -30,6 +31,7 @@ export const Counter = styled.div`
 export const CounterDiv = styled.div`
   display: flex;
   height: 115px;
+  margin-left: 10px;
 
   justify-content: center;
   flex-direction: column;

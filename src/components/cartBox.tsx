@@ -1,7 +1,15 @@
 import * as S from "../styles/components/cartBox";
 import Image from "next/image";
 import Product from "../assets/product.svg";
-const CartBox = () => {
+interface CartBoxProps {
+  id: number;
+  name: string;
+  brand: string;
+  description: string;
+  price: string;
+  img: string;
+}
+const CartBox = ({ ...props }: CartBoxProps) => {
   return (
     <>
       <S.PositionClose>
@@ -9,8 +17,8 @@ const CartBox = () => {
       </S.PositionClose>
 
       <S.Container>
-        <Image src={Product} alt="Product" width={80} height={80} />
-        <S.Text> Apple Watch Series 4 GPS </S.Text>
+        <img src={props.img} alt="Product" width={70} height={70} />
+        <S.Text> {props.name} </S.Text>
         <S.CounterDiv>
           <S.Counter>
             <S.CounterButton>
@@ -22,7 +30,7 @@ const CartBox = () => {
             </S.CounterButton>
           </S.Counter>
         </S.CounterDiv>
-        <S.Price>R$500 </S.Price>
+        <S.Price>R$ {props.price} </S.Price>
       </S.Container>
     </>
   );
