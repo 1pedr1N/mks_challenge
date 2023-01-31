@@ -11,8 +11,8 @@ export const MainContainer = styled.div`
   grid-row-gap: 50px;
   width: 70%;
   place-items: center;
-
-  margin-top: 115px;
+  height: 100%;
+  margin: 115px 0px;
 `;
 export const FooterPosition = styled.div`
   width: 100%;

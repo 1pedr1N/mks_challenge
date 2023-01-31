@@ -25,8 +25,8 @@ export default function Home() {
         "https://mks-challenge-api-frontend.herokuapp.com/api/v1/products?page=1&rows=5&sortBy=id&orderBy=DESC"
       )
       .then((response) => {
-        setProducts(response.data);
-        console.log(Array(response.data));
+        setProducts(response.data.products);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -35,25 +35,21 @@ export default function Home() {
   return (
     <>
       <Header />
-
       <S.AlignCenter>
         <S.MainContainer>
-          {Array.from(products).map((product, idx) => (
-            <S.MainContainer>
-              <BoxProduct
-                img={product.photo}
-                key={product.id}
-                id={product.id}
-                name={product.name}
-                brand={product.brand}
-                description={product.description}
-                price={product.price}
-              />
-            </S.MainContainer>
+          {products.map((product, idx) => (
+            <BoxProduct
+              key={idx}
+              id={product.id}
+              brand={product.brand}
+              description={product.description}
+              name={product.name}
+              img={product.photo}
+              price={product.price}
+            />
           ))}
         </S.MainContainer>
       </S.AlignCenter>
-
       <S.FooterPosition>
         <Footer />
       </S.FooterPosition>
