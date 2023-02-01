@@ -1,10 +1,9 @@
 import * as S from "../styles/components/cartBox";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CartContext } from "../context/cartContext";
 import { CartBoxProps } from "@/interfaces/interface.cardBoxProps";
 
 const CartBox = ({ ...props }: CartBoxProps) => {
-  const number = 1;
   const { removeProduct, addProduct } = useContext(CartContext);
 
   return (
