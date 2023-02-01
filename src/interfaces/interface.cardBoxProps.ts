@@ -1,12 +1,4 @@
-export interface CartBoxProps {
-  id: number;
-  name: string;
-  brand: string;
-  description: string;
-  price: number;
-  img: string;
-  click: () => void;
-  add: () => void;
-  remove: () => void;
+import { IProductProps } from "@/interfaces/interface.product";
+export interface CartBoxProps extends IProductProps {
   numberProducts: number;
 }

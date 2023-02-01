@@ -15,7 +15,7 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
   const [products, setProducts] = useState<IProductProps[]>([]);
   const [count, setCount] = useState(1);
   const [total, setTotal] = useState(0);
-  const { cart, removeProduct } = useContext(CartContext);
+  const { cart, removeProduct, totalPrice } = useContext(CartContext);
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -35,28 +35,6 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
       });
   }, []);
 
-  function countProducts() {
-    setCount(count + 1);
-  }
-  function removeProductCart() {
-    setCount(count - 1);
-  }
-  if (count < 1) {
-    setCount(1);
-    alert(
-      "Não é possível remover mais produtos, para remover o produto clique no botão X"
-    );
-  }
-  function totalValue() {
-    let total = 0;
-    cart.map((product: IProductProps) => {
-      total += product.price * count;
-    });
-    setTotal(total);
-  }
-  useEffect(() => {
-    totalValue();
-  }, [cart]);
   return (
     <div
       style={{
@@ -75,37 +53,32 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
           </S.MenuCloseImage>
         </S.MenuHeader>
         <S.MenuContent>
-          {cart.length > 0 ? (
+          {!cart.length && (
             <>
-              {cart.map((product: IProductProps) => (
+              <S.EmptyText>Seu carrinho de compras está vazio!</S.EmptyText>
+              <Lottie options={defaultOptions} height={500} width={500} />
+            </>
+          )}
+
+          {!!cart.length && (
+            <>
+              {cart.map(({ product, amount }) => (
                 <CartBox
-                  numberProducts={count}
-                  add={() => countProducts()}
-                  remove={() => removeProductCart()}
-                  click={() => removeProduct(product)}
+                  {...product}
                   key={product.id}
                   id={product.id}
-                  brand={product.brand}
-                  description={product.description}
-                  name={product.name}
-                  img={product.photo}
-                  price={product.price}
+                  numberProducts={amount}
                 />
               ))}
               <S.MenuFooter>
                 <S.Value>
                   <S.ValueText>Total:</S.ValueText>
-                  <S.ValueText>R$ {total}</S.ValueText>
+                  <S.ValueText>R$ {totalPrice} </S.ValueText>
                 </S.Value>
                 <S.Button>
                   <S.ButtonText>Finalizar compra</S.ButtonText>
                 </S.Button>
               </S.MenuFooter>
-            </>
-          ) : (
-            <>
-              <S.EmptyText>Seu carrinho de compras está vazio!</S.EmptyText>
-              <Lottie options={defaultOptions} height={500} width={500} />
             </>
           )}
         </S.MenuContent>

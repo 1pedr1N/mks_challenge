@@ -21,7 +21,6 @@ const Header = () => {
           <div style={{ display: "flex", alignItems: "center" }}>
             <S.Cart onClick={toggleMode}>
               <Image src={CartIcon} alt="Cart Icon" width={30} height={30} />
-              <S.CartText>0</S.CartText>
             </S.Cart>
           </div>
         )}

@@ -5,25 +5,29 @@ import { CartBoxProps } from "@/interfaces/interface.cardBoxProps";
 
 const CartBox = ({ ...props }: CartBoxProps) => {
   const number = 1;
-  const { removeProduct } = useContext(CartContext);
+  const { removeProduct, addProduct } = useContext(CartContext);
 
   return (
     <>
-      <S.PositionClose onClick={props.click}>
+      <S.PositionClose onClick={() => removeProduct({ ...props }, true)}>
         <S.Close>X</S.Close>
       </S.PositionClose>
 
       <S.Container>
-        <img src={props.img} alt="Product" width={70} height={70} />
+        <img src={props.photo} alt="Product" width={70} height={70} />
         <S.Text> {props.name} </S.Text>
         <S.CounterDiv>
           <S.Counter>
             <S.CounterButton>
-              <S.ButtonText onClick={props.remove}>-</S.ButtonText>
+              <S.ButtonText onClick={() => removeProduct({ ...props })}>
+                -
+              </S.ButtonText>
             </S.CounterButton>
             <S.CounterText> {props.numberProducts} </S.CounterText>
             <S.CounterButton>
-              <S.ButtonText onClick={props.add}>+</S.ButtonText>
+              <S.ButtonText onClick={() => addProduct({ ...props })}>
+                +
+              </S.ButtonText>
             </S.CounterButton>
           </S.Counter>
         </S.CounterDiv>
