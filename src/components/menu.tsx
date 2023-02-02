@@ -2,20 +2,18 @@ import * as S from "../styles/components/menu";
 import Image from "next/image";
 import Close from "../assets/close.svg";
 import CartBox from "./cartBox";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { IProductProps } from "@/interfaces/interface.product";
 import { useContext } from "react";
-import lottie from "lottie-web";
+
 import Lottie from "react-lottie";
 import { CartContext } from "@/context/cartContext";
 import Animation from "../assets/animation.json";
-import { Price } from "@/styles/components/cartBox";
 const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
   const [products, setProducts] = useState<IProductProps[]>([]);
-  const [count, setCount] = useState(1);
-  const [total, setTotal] = useState(0);
-  const { cart, removeProduct, totalPrice } = useContext(CartContext);
+
+  const { cart, totalPrice } = useContext(CartContext);
   const defaultOptions = {
     loop: true,
     autoplay: true,

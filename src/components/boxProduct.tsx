@@ -1,10 +1,9 @@
 import * as S from "../styles/components/boxProduct";
 import Image from "next/image";
 import Bag from "../assets/bag.svg";
-import { BoxProductProps } from "@/interfaces/interface.BoxProducts";
-import { useContext, useEffect } from "react";
-import { CartContext } from "../context/cartContext";
-const BoxProduct = ({ ...props }: BoxProductProps) => {
+import { BoxProducts } from "@/interfaces/interface.BoxProducts";
+
+const BoxProduct = ({ ...props }: BoxProducts) => {
   return (
     <S.Container>
       <img
