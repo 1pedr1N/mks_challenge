@@ -40,7 +40,7 @@ export const MenuCloseImage = styled.div`
 export const MenuContent = styled.div`
   display: flex;
   flex-direction: column;
-  max-height: 650px;
+  max-height: 550px;
   overflow-y: auto;
   align-items: center;
 `;
