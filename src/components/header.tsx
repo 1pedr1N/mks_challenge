@@ -7,10 +7,10 @@ import Perfil from "../assets/stick-man.png"
 import Link from "next/link";
 const Header = () => {
   const [active, setMode] = useState(false);
+  const [logged, setLogged] = useState(true);
   const toggleMode = () => {
     setMode(!active);
   };
-
   return (
     <>
       <S.Header>
@@ -18,7 +18,15 @@ const Header = () => {
           <S.HeaderTitle>Payment</S.HeaderTitle>
           <S.HeaderSubTitle>System</S.HeaderSubTitle>
         </S.HeaderDiv>
-<S.HeaderRight> 
+        <Link href="/profile">
+          {logged === true && (
+ <S.Perfil>
+ <Image src={Perfil}    alt="Perfil" width={30} height={30}/>
+</S.Perfil>
+          )}
+
+        </Link>
+
         {active ? null : (
           <div style={{ display: "flex", alignItems: "center" }}>
             <S.Cart onClick={toggleMode}>
@@ -28,12 +36,7 @@ const Header = () => {
         )}
          
         {active ? <Menu onClick={toggleMode} /> : null}
-        <Link href="/profile">
-        <S.Perfil>
-          <Image src={Perfil}    alt="Perfil" width={30} height={30}/>
-        </S.Perfil>
-        </Link>
-        </S.HeaderRight>
+        
       </S.Header>
     </>
   );

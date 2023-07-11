@@ -44,7 +44,7 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
       <S.Menu>
         <S.MenuHeader>
           <S.MenuTitle>
-            Carrinho <br /> de compras
+            Your Cart
           </S.MenuTitle>
           <S.MenuCloseImage onClick={onClick}>
             <Image src={Close} alt="Close Icon" width={40} height={40} />
@@ -53,7 +53,7 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
         <S.MenuContent>
           {!cart.length && (
             <>
-              <S.EmptyText>Seu carrinho de compras está vazio!</S.EmptyText>
+              <S.EmptyText>Your Cart its empty!</S.EmptyText>
               <Lottie options={defaultOptions} height={500} width={500} />
             </>
           )}
@@ -74,7 +74,7 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
                   <S.ValueText>R$ {totalPrice} </S.ValueText>
                 </S.Value>
                 <S.Button>
-                  <S.ButtonText>Finalizar compra</S.ButtonText>
+                  <S.ButtonText>Buy Now</S.ButtonText>
                 </S.Button>
               </S.MenuFooter>
             </>

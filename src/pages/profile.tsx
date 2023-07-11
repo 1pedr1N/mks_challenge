@@ -1,13 +1,17 @@
 import * as S from "../styles/profile"
 import Input from "@/components/input"
+import Link from "next/link"
 const ProfilePage = () => {
     return (
         <S.Container>
+            <Link href="/">
             <S.Header>
                 <S.HeaderTitle>
                     ProfilePage
                 </S.HeaderTitle>
-                </S.Header>
+                </S.Header> 
+                </Link>
+
 
                 <S.Content>
                     <S.ContentTitle>
@@ -25,7 +29,7 @@ const ProfilePage = () => {
                     <S.CenterButton> 
 
                     <S.Button>
-                        Salvar
+                        Save
                     </S.Button>
                     </S.CenterButton>
                   
