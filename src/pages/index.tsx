@@ -35,7 +35,7 @@ export default function Home() {
             <BoxProduct
               key={idx}
               id={product.id}
-              brand={product.brand}
+              quantity={product.numberProducts}
               description={product.description}
               name={product.name}
               img={product.photo}

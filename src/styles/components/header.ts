@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Header = styled.header`
   display: flex;
   flex-direction: row;
-
+  align-items: center;
   background-color: #0f52ba;
   height: 100px;
   justify-content: space-between;
@@ -32,6 +32,12 @@ export const HeaderDiv = styled.div`
   flex-direction: row;
   align-items: baseline;
 `;
+export const HeaderRight = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 65px;
+`;
 export const Cart = styled.div`
   display: flex;
   cursor: pointer;
@@ -53,4 +59,21 @@ export const CartText = styled.p`
   margin-left: 4px;
   font-size: 20px;
   font-weight: 700;
+`;
+
+
+export const Perfil = styled.div`
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  width: 90px;
+  height: 50px;
+  border-radius: 10px;
+  :hover {
+    background-color: #fffafa;
+    transform: scale(1.1);
+    transition: 0.2s;
+  }
 `;
