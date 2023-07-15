@@ -20,33 +20,33 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
     autoplay: true,
     animationData: Animation,
   };
-  const handleClickPayPal = () => {
-    const res = user.payment()
-    console.log(res)
+  // const handleClickPayPal = () => {
+  //   const res = user.payment()
+  //   console.log(res)
    
       
-  }
-  const createOrder = (data:any, actions:any) => {
-    return actions.order.create({
-      purchase_units: [
-        {
-          amount: {
-            value: totalPrice,
-            currency_code: "BRL",
-          },
-        },
-      ],
-    });
-  };
-  const onApprove = (data:any, actions:any) => {
-    return actions.order.capture().then(function (details:any) {
-      alert("Transaction completed by " + details.payer.name.given_name);
-    });
-  };
+  // }
+  // const createOrder = (data:any, actions:any) => {
+  //   return actions.order.create({
+  //     purchase_units: [
+  //       {
+  //         amount: {
+  //           value: totalPrice,
+  //           currency_code: "USD",
+  //         },
+  //       },
+  //     ],
+  //   });
+  // };
+  // const onApprove = (data:any, actions:any) => {
+  //   return actions.order.capture().then(function (details:any) {
+  //     alert("Transaction completed by " + details.payer.name.given_name);
+  //   });
+  // };
 
-  const onError = (err:any) => {
-    console.log(err);
-  };
+  // const onError = (err:any) => {
+  //   console.log(err);
+  // };
   useEffect(() => {
     axios
       .get(
@@ -104,10 +104,7 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
                   <S.ValueText>R$ {totalPrice} </S.ValueText>
                 </S.Value>
     <PayPalScriptProvider options={{ clientId: 'AQr5Q2N_DlhfJGDh3HZ4nhFVGg-RM4ssxMDjyM4wcxj3mmU0bV_rp_ZbTKaDyfOlzo56sVXIZfi3J4yJ' }} >
-      <PayPalButtons style={{ layout: 'horizontal' }} 
-        createOrder={createOrder}
-        onApprove={onApprove}
-        onError={onError}/>
+      <PayPalButtons style={{ layout: 'horizontal' }} />
     </PayPalScriptProvider>
                 <S.Button>
                   <S.ButtonText>Buy Now</S.ButtonText>
