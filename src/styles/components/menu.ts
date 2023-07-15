@@ -77,3 +77,22 @@ export const MenuFooter = styled.div`
   bottom: 0;
   width: 100%;
 `;
+export const PayPalButtonText = styled.p`
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+`;
+export const PayPalButton = styled.button`
+  background-color: yellow;
+  color: #fff;
+  height: 100px;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  :hover {
+    background-color: #fff;
+    transition: 0.5s ease-in-out;
+    color: #000;
+  }
+`;
+

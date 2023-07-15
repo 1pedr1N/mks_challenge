@@ -6,10 +6,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { IProductProps } from "@/interfaces/interface.product";
 import { useContext } from "react";
-
+import { user } from "@/service/user";
 import Lottie from "react-lottie";
 import { CartContext } from "@/context/cartContext";
 import Animation from "../assets/animation.json";
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
   const [products, setProducts] = useState<IProductProps[]>([]);
 
@@ -18,6 +19,33 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
     loop: true,
     autoplay: true,
     animationData: Animation,
+  };
+  const handleClickPayPal = () => {
+    const res = user.payment()
+    console.log(res)
+   
+      
+  }
+  const createOrder = (data:any, actions:any) => {
+    return actions.order.create({
+      purchase_units: [
+        {
+          amount: {
+            value: totalPrice,
+            currency_code: "BRL",
+          },
+        },
+      ],
+    });
+  };
+  const onApprove = (data:any, actions:any) => {
+    return actions.order.capture().then(function (details:any) {
+      alert("Transaction completed by " + details.payer.name.given_name);
+    });
+  };
+
+  const onError = (err:any) => {
+    console.log(err);
   };
   useEffect(() => {
     axios
@@ -41,6 +69,7 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
         margin: "0px",
       }}
     >
+    
       <S.Menu>
         <S.MenuHeader>
           <S.MenuTitle>
@@ -68,11 +97,18 @@ const Menu = ({ onClick }: { onClick?: React.MouseEventHandler }) => {
                   numberProducts={amount}
                 />
               ))}
+           
               <S.MenuFooter>
                 <S.Value>
                   <S.ValueText>Total:</S.ValueText>
                   <S.ValueText>R$ {totalPrice} </S.ValueText>
                 </S.Value>
+    <PayPalScriptProvider options={{ clientId: 'AQr5Q2N_DlhfJGDh3HZ4nhFVGg-RM4ssxMDjyM4wcxj3mmU0bV_rp_ZbTKaDyfOlzo56sVXIZfi3J4yJ' }} >
+      <PayPalButtons style={{ layout: 'horizontal' }} 
+        createOrder={createOrder}
+        onApprove={onApprove}
+        onError={onError}/>
+    </PayPalScriptProvider>
                 <S.Button>
                   <S.ButtonText>Buy Now</S.ButtonText>
                 </S.Button>

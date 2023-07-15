@@ -1,7 +1,23 @@
 import * as S from "../styles/profile"
 import Input from "@/components/input"
 import Link from "next/link"
+import { user } from "@/service/user"
+import { useEffect, useState } from "react"
 const ProfilePage = () => {
+    // const [users, setUsers] = useState<any[]>([])
+    // const getAllUsers = async () => {
+    //   try{
+    //     const res = await user.get("novoemail@example.com")
+    //     console.log(res)
+    //     setUsers(res.data)
+    //   } catch (error) {
+    //     console.log("deu erro")
+    //   }
+
+    // }
+    // useEffect(() => {
+    //     getAllUsers()
+    // }, [])
     return (
         <S.Container>
             <Link href="/">
@@ -11,8 +27,6 @@ const ProfilePage = () => {
                 </S.HeaderTitle>
                 </S.Header> 
                 </Link>
-
-
                 <S.Content>
                     <S.ContentTitle>
                         My Profile
@@ -27,12 +41,10 @@ const ProfilePage = () => {
                     </S.Inputs>
                     </S.CenterInputs>
                     <S.CenterButton> 
-
                     <S.Button>
                         Save
                     </S.Button>
                     </S.CenterButton>
-                  
                 </S.Content>
         </S.Container>
     )
